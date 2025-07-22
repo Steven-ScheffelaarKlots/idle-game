@@ -1,0 +1,21 @@
+- Figure out data structure for character data
+- Figure out location of TS typees
+- Create design system components for app
+    - Modal
+    - Alert
+    - Job
+    - Joblist
+    - Sidebar
+    - Skills
+    - Login Page
+
+- Implement Header and Footer for page
+- Implement Redux for character data
+- Add data saving inside of cookies
+- Create backend service for authentication and data saving
+    - Create feature flag for backend enablement if backend deployment is difficult
+
+
+
+- When moving around tabs, that can be when xp is saved to redux, and when a skill levels up
+    - Skills could be a copy of redux, but when moving around tabs need to keep the skill state up, even though that skill isn't rendered anymore

@@ -1,0 +1,46 @@
+.jobListContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.jobList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.jobItemWrapper {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.jobItemWrapper:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.jobItem h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.requiredSkills {
+  margin-top: 12px;
+}
+
+.requiredSkills ul {
+  padding-left: 20px;
+  margin-top: 4px;
+}
+
+.emptyJobList {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-style: italic;
+}
