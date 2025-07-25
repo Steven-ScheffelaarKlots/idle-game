@@ -1,11 +1,11 @@
 'use client';
 
-import MainPage from "./main/mainPage";
+import Link from 'next/link';
 
 export default function Home() {
   return (
     <main>
-      <MainPage />
+      <Link href="/main">Go to Main Page</Link>
     </main>
   );
 }
