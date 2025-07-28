@@ -1,26 +1,19 @@
 import React from 'react';
 import styles from './item.module.css';
+import { InventoryItem } from '../../../main/character/character';
 
-export interface ItemProps {
-  id?: string;
-  name?: string;
-  quantity?: number;
-  icon?: string;
-  rarity?: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
+export interface ItemComponentProps {
+  item: InventoryItem;
   onClick?: () => void;
 }
 
-export const Item: React.FC<ItemProps> = ({
-  id,
-  name,
-  quantity = 0,
-  icon = '',
-  rarity = 'common',
+export const ItemComponent: React.FC<ItemComponentProps> = ({
+  item,
   onClick
 }) => {
   // Determine if the item slot is empty
-  const isEmpty = !id && !name;
-  
+  const isEmpty = !item.item.id && !item.item.name;
+
   // Handle item click
   const handleClick = () => {
     if (onClick && !isEmpty) {
@@ -29,31 +22,31 @@ export const Item: React.FC<ItemProps> = ({
   };
   
   // Get display icon - default to a placeholder if not provided
-  const displayIcon = icon || '❓';
+  const displayIcon = item.item.icon || '❓';
   
   return (
     <div 
       className={`
         ${styles.itemContainer} 
-        ${styles[rarity]} 
+        ${styles[item.item.rarity]} 
         ${isEmpty ? styles.empty : styles.filled}
         ${onClick && !isEmpty ? styles.clickable : ''}
       `}
       onClick={handleClick}
-      title={isEmpty ? 'Empty Slot' : name}
-      data-item-id={id || 'empty'}
+      title={isEmpty ? 'Empty Slot' : item.item.name}
+      data-item-id={item.item.id || 'empty'}
     >
       {!isEmpty ? (
         <>
           <div className={styles.iconContainer}>
             <span className={styles.icon}>{displayIcon}</span>
           </div>
-          
-          <div className={styles.name}>{name}</div>
-          
-          {quantity > 0 && (
+
+          <div className={styles.name}>{item.item.name}</div>
+
+          {item.quantity && item.quantity > 0 && (
             <div className={styles.quantity}>
-              {quantity > 999 ? '999+' : quantity}
+              {item.quantity > 999 ? '999+' : item.quantity}
             </div>
           )}
         </>
@@ -66,4 +59,4 @@ export const Item: React.FC<ItemProps> = ({
   );
 };
 
-export default Item;
+export default ItemComponent;

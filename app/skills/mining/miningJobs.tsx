@@ -1,3 +1,5 @@
+import miningItems from "./miningItems";
+
 const miningJobs = [
             {
                 id: 'copper_ore',
@@ -6,7 +8,7 @@ const miningJobs = [
                 duration: 3000, // 3 seconds
                 experience: 5,
                 requiredLevel: 1,
-                resources: ['copper_ore'],
+                resources: [miningItems.copper_ore],
                 quantity: 1
             },
             {
@@ -30,5 +32,4 @@ const miningJobs = [
                 quantity: 1
             }
         ];
-
-        export default miningJobs;
+ export default miningJobs;

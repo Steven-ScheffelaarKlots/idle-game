@@ -1,17 +1,15 @@
 import { ReactNode } from 'react';
 import { MiningSkill } from '../../skills/mining/miningSkill';
+import ItemType from '../../design/inventory/itemTypes';
 
-// Define types for our character system
-type InventoryItem = {
-  id: string;
-  name: string;
-  description?: string;
-  quantity: number;
-  value?: number;
-};
 
 type Skills = {
   [key: string]: MiningSkill;
+};
+
+export type InventoryItem = {
+  item: ItemType;
+  quantity: number;
 };
 
 export class Character {
@@ -60,18 +58,18 @@ export class Character {
   }
 
   // Inventory methods
-  addItem(item: InventoryItem): void {
-    const existingItem = this.inventory.find(i => i.id === item.id);
+  addItem(item: ItemType, quantity: number): void {
+    const existingItem = this.inventory.find(i => i.item.id === item.id);
     
     if (existingItem) {
-      existingItem.quantity += item.quantity;
+      existingItem.quantity += quantity;
     } else {
-      this.inventory.push({...item});
+      this.inventory.push({ item, quantity });
     }
   }
 
   removeItem(itemId: string, quantity: number = 1): boolean {
-    const itemIndex = this.inventory.findIndex(i => i.id === itemId);
+    const itemIndex = this.inventory.findIndex(i => i.item.id === itemId);
     
     if (itemIndex === -1 || this.inventory[itemIndex].quantity < quantity) {
       return false;
@@ -84,6 +82,11 @@ export class Character {
     }
     
     return true;
+  }
+
+  findItemQuantity(itemId: string): number {
+    const item = this.inventory.find(i => i.item.id === itemId);
+    return item ? item.quantity : 0;
   }
 
   getSkillLevel(skillName: string): number {
@@ -113,8 +116,8 @@ export function CharacterDisplay({ character }: { character: Character }): React
       <div className="inventory">
         <h3>Inventory ({character.inventory.length} items)</h3>
         {character.inventory.map((item) => (
-          <div key={item.id} className="item">
-            {item.name} x{item.quantity}
+          <div key={item.item.id} className="item">
+            {item.item.name} x{item.quantity}
           </div>
         ))}
       </div>

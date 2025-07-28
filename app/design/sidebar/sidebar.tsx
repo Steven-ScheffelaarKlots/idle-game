@@ -8,7 +8,7 @@ interface SidebarProps {
   defaultCollapsed?: boolean;
   tabs: Tab[];
   activeTab: string;
-  onNavigate: (path: string) => void;
+  onNavigate: (id: string) => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ 
@@ -36,11 +36,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
   }, []);
 
   const groupedTabs = groupTabsByCategory(tabs);
-  console.log('Grouped Tabs:', groupedTabs);
 
-  const handleNavigate = (path: string) => {
-    console.log(`Navigating to: ${path}`);
-    onNavigate(path);
+  const handleNavigate = (id: string) => {
+    onNavigate(id);
   };
 
   return (
@@ -60,7 +58,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <div className={styles.section}>
         <div 
           className={styles.sectionLink}
-          onClick={() => handleNavigate('/character')}
+          onClick={() => handleNavigate('character')}
           role="button"
           tabIndex={0}
         >
@@ -108,7 +106,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {groupedTabs.skills.tabs.map((skill) => (
             <div
               key={skill.id}
-              onClick={() => handleNavigate(skill.name)}
+              onClick={() => handleNavigate(skill.id)}
               className={`${styles.skillItem} ${
                 activeTab === skill.id ? styles.active : ''
               }`}

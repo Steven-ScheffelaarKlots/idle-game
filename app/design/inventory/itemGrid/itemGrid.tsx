@@ -1,14 +1,15 @@
 'use client';
 
 import React from 'react';
-import { Item, ItemProps } from '../item/item';
+import { ItemComponent } from '../item/item';
 import styles from './itemGrid.module.css';
+import { InventoryItem } from '../../../main/character/character';
 
 export interface ItemGridProps {
-  items: ItemProps[];
+  items: InventoryItem[];
   emptySlots?: number;
   gridClassName?: string;
-  onItemClick?: (item: ItemProps, index: number) => void;
+  onItemClick?: (item: InventoryItem) => void;
 }
 
 export const ItemGrid: React.FC<ItemGridProps> = ({
@@ -21,9 +22,9 @@ export const ItemGrid: React.FC<ItemGridProps> = ({
   const totalSlots = items.length + emptySlots;
   
   // Handle item click
-  const handleItemClick = (item: ItemProps, index: number) => {
-    if (onItemClick && item.id) {
-      onItemClick(item, index);
+  const handleItemClick = (item: InventoryItem) => {
+    if (onItemClick && item.item.id) {
+      onItemClick(item);
     }
   };
   
@@ -31,17 +32,17 @@ export const ItemGrid: React.FC<ItemGridProps> = ({
     <div className={`${styles.gridContainer} ${gridClassName}`}>
       {/* Render all items */}
       {items.map((item, index) => (
-        <Item
-          key={`item-${item.id || index}`}
-          {...item}
-          onClick={() => handleItemClick(item, index)}
+        <ItemComponent
+          key={`item-${item.item.id || index}`}
+          item={item}
+          onClick={() => handleItemClick(item)}
         />
       ))}
       
       {/* Render empty slots */}
-      {Array.from({ length: emptySlots }).map((_, index) => (
-        <Item key={`empty-${index}`} />
-      ))}
+      {/* {Array.from({ length: emptySlots }).map((_, index) => (
+        <ItemComponent key={`empty-${index}`} />
+      ))} */}
       
       {/* Show message when no items and no empty slots */}
       {totalSlots === 0 && (
