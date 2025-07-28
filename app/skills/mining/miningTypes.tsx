@@ -1,3 +1,5 @@
+import ItemType from "../../design/inventory/itemTypes";
+
 export type MiningJob = {
     id: string;
     name: string;
@@ -5,6 +7,6 @@ export type MiningJob = {
     duration: number;
     experience: number;
     requiredLevel: number;
-    resources: string[];
+    resources: ItemType[];
     quantity: number;
 };

@@ -81,6 +81,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
           </div>
         )}
+        {groupedTabs.player.tabs.map((tab) => (
+            <div
+              key={tab.id}
+              onClick={() => handleNavigate(tab.id)}
+              className={`${styles.skillItem} ${
+                activeTab === tab.id ? styles.active : ''
+              }`}
+              role="button"
+              tabIndex={0}
+            >
+              <div className={styles.skillIcon}>
+                <span className={`fa ${tab.icon || 'fa-solid fa-hammer'}`}></span>
+              </div>
+              {!collapsed && (
+                <div className={styles.skillInfo}>
+                  <span className={styles.skillName}>{tab.name}</span>
+                  {/* <span className={styles.skillLevel}>Lvl {tab.level}</span> */}
+                </div>
+              )}
+            </div>
+          ))}
       </div>
 
       {/* Currency Section */}
@@ -124,24 +145,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
               )}
             </div>
           ))}
-        </div>
-      </div>
-
-      {/* Inventory Link (optional) */}
-      <div className={styles.section}>
-        <div 
-          className={styles.sectionLink}
-          onClick={() => handleNavigate('/inventory')}
-          role="button"
-          tabIndex={0}
-        >
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionIcon}>🎒</span>
-            {!collapsed && <span className={styles.sectionTitle}>Inventory</span>}
-          </div>
-          {!collapsed && character.inventory.length > 0 && (
-            <span className={styles.inventoryCount}>{character.inventory.length}</span>
-          )}
         </div>
       </div>
     </div>

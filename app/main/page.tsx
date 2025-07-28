@@ -2,8 +2,6 @@
 
 import React from 'react';
 import tabsObject from './tabs';
-// import { useCharacter } from './character/characterContext';
-// import { CharacterDisplay } from './character/character';
 import Sidebar from '../design/sidebar';
 
 const MainPage: React.FC = () => {
@@ -24,11 +22,5 @@ const MainPage: React.FC = () => {
             </>
     );
 };
-
-// Simple component to display character info
-// const CharacterInfo: React.FC = () => {
-//     const { character } = useCharacter();
-//     return <CharacterDisplay character={character} />;
-// };
 
 export default MainPage;

@@ -18,7 +18,7 @@ const miningJobs = [
                 duration: 4000, // 4 seconds
                 experience: 10,
                 requiredLevel: 5,
-                resources: ['tin_ore'],
+                resources: [miningItems.tin_ore],
                 quantity: 1
             },
             {
@@ -28,7 +28,7 @@ const miningJobs = [
                 duration: 5500, // 5.5 seconds
                 experience: 25,
                 requiredLevel: 15,
-                resources: ['iron_ore'],
+                resources: [miningItems.iron_ore],
                 quantity: 1
             }
         ];

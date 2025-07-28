@@ -34,29 +34,24 @@ export const Mining: React.FC = () => {
             
             setMiningSkill(updatedSkill);
             
-            // Update character with gained resources and updated skill
-            const updatedCharacter = {...character};
+            // Create a new character object that preserves methods
+            const updatedCharacter = character;
             updatedCharacter.skills.mining = updatedSkill;
             
-            // Add resources to inventory
+            // Add resources to inventory using character's methods
             activeJob.resources.forEach(resource => {
-                updatedCharacter.addItem({
-                    id: resource.toLowerCase(),
-                    name: resource,
-                    quantity: activeJob.quantity,
-                    value: activeJob.value || 1
-                });
+                // Using the proper method on the character instance
+                updatedCharacter.addItem(resource, activeJob.quantity);
             });
             
             updateCharacter(updatedCharacter);
             
             // Show success alert
             addAlert(
-                `Gained ${activeJob.quantity} ${activeJob.resources.join(', ')}`, 
+                `Gained ${activeJob.quantity} ${activeJob.resources.map(r => r.name).join(', ')}`, 
                 'success'
             );
             
-            setShowProgress(false);
         }
     };
 

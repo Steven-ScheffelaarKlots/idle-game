@@ -1,5 +1,6 @@
 
 import Mining from "../skills/mining/miningView";
+import InventoryView from "./inventory/inventoryView";
 
 export interface Tab {
     id: string;
@@ -19,6 +20,7 @@ export const tabsObject: Tab[] = [
     { id: "mining", displayName: "Mining", name: "Mining", path: Mining, category: { displayName: "Skills", name: "skills" }, icon: "fa-solid fa-hammer" },
     { id: "character", displayName: "Character", name: "Character", path: Mining, category: { displayName: "Player", name: "player" }, icon: "fa-solid fa-user" },
     { id: "crafting", displayName: "Crafting", name: "Crafting", path: Mining, category: { displayName: "Skills", name: "skills" }, icon: "fa-solid fa-cogs" },
+    { id: "inventory", displayName: "Inventory", name: "Inventory", path: InventoryView, category: { displayName: "Player", name: "player" }, icon: "fa-solid fa-box" },
 ];
 
 export const groupTabsByCategory = (
